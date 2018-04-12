@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+# CREDITS
+# See article by AJ ONeal
+# https://coolaj86.com/articles/getting-started-with-golang-and-vim/
+
+brew update
+brew install
+
+# Install pathogen
+mkdir -p ~/.vim/autoload ~/.vim/bundle && \
+curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+
+# Install vim-sensible
+git clone git://github.com/tpope/vim-sensible.git ~/.vim/bundle/vim-sensible
+
+# Install syntastic
+git clone https://github.com/scrooloose/syntastic.git ~/.vim/bundle/syntastic
+
+# goimports
+go get -u golang.org/x/tools/cmd/goimports
+
+# gocode
+go get -u github.com/nsf/gocode
+
+# godef
+go get -u github.com/rogpeppe/godef
+
+# golint
+go get -u github.com/golang/lint/golint
+
+# errcheck
+go get -u github.com/kisielk/errcheck
+
+# Install vim-go
+git clone https://github.com/fatih/vim-go.git ~/.vim/bundle/vim-go
+
+# Install YouCompleteMe (requires building)
+git clone https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/YouCompleteMe
+
+# the build step
+brew install cmake
+pushd ~/.vim/bundle/YouCompleteMe
+git submodule update --init --recursive
+./install.sh
+popd
+
+cp .vimrc ~/.vimrc
+
+echo Done.
