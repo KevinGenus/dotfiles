@@ -50,5 +50,5 @@ inoremap { {<CR>}<ESC>ko
 " inoremap [ []<ESC>i
 
 " tabstop to 4
-ts=4
-
+set ts=4
+set expandtab
